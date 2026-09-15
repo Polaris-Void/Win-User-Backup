@@ -1,40 +1,55 @@
-# Windows Shell Folder Backup Script
+<p align="right">
+  <a href="README_FA.md"> <strong>فارسی</strong></a>
+</p>
 
-A lightweight, automated Windows Batch script designed to back up core user shell folders (Desktop, Downloads, Documents, Music, Pictures, Videos) safely and efficiently using `Robocopy`.
+---
 
-## Key Features
+# Windows User Libraries & Shell Folders Backup Utility
 
-- **Dynamic Path Resolution**: Automatically queries the Windows Registry (`User Shell Folders`) to determine exact directory paths, respecting custom user configurations.
-- **OneDrive Fallback**: Automatically detects and falls back to standard user profile paths or OneDrive directory structures if registry keys are missing.
-- **Admin Privilege Escalation**: Automatically prompts for Administrator privileges via PowerShell if executed without elevation.
-- **Optimized Robocopy Integration**:
-  - Excludes NTFS Junction Points to prevent infinite recursion loops.
-  - Preserves file and directory timestamps and attributes (`DAT`).
-  - Implements fast retry logic (`/R:1 /W:1`) to prevent hangs on locked files.
-  - Self-excludes destination backup directories to prevent recursive copying.
-- **Clean Execution**: Runs silently with error logging detection based on Robocopy exit status codes.
+A fast, lightweight, and automated Windows batch utility designed to safely back up essential user libraries (Desktop, Downloads, Documents, Pictures, Music, and Videos) using the high-performance **Robocopy** engine.
 
-## Requirements
+Unlike naive backup scripts that rely solely on hardcoded paths, this tool dynamically queries the Windows Registry (`User Shell Folders`) to detect custom folder locations, redirected drives, and Microsoft OneDrive synchronizations.
 
-- **Operating System**: Windows 10, Windows 11, or Windows Server.
-- **Privileges**: Administrative privileges (requested automatically upon execution).
+---
 
-## Usage
+## ✨ Features
 
-1. Download or clone this repository.
-2. Place `win_backup.bat` in the target drive/folder where you wish to store the backups.
-3. Run `win_backup.bat` (Right-click and "Run as administrator", or double-click to accept the UAC prompt).
-4. The script will create a directory named `Windows Backup` in the same directory where the script resides and copy the target folders.
+- **🔑 Automatic Elevation (UAC):** Automatically requests administrator privileges via PowerShell if not already running as Administrator.
+- **🧠 Dynamic Registry Resolution:** Queries `HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders` to accurately pinpoint custom or relocated user paths.
+- **☁️ Smart OneDrive Detection:** Seamlessly identifies and backs up folders even if they have been relocated or redirected to Microsoft OneDrive.
+- **⚡ Robust Robocopy Engine:** Utilizes Robocopy with `/E`, `/COPY:DAT`, and `/DCOPY:DAT` flags to preserve files, directory structures, extended attributes, and timestamps.
+- **🛡️ Recursion & Junction Safety:** Excludes Junction Points (`/XJ`) to prevent infinite recursion loops and automatically excludes the target backup folder (`/XD`).
+- **⏳ Low-Latency Retries:** Configured with `/R:1 /W:1` to skip stubborn, locked files without freezing the backup process.
+- **📦 Fully Portable:** Backups are stored in a dedicated `Windows Backup` folder directly next to the script, making it ideal for running from an external hard drive or USB stick.
 
-## Processed Folders
+---
 
-- **Desktop**
-- **Downloads**
-- **Documents**
-- **Music**
-- **Pictures**
-- **Videos**
+## 📂 Backed-Up Libraries
 
-## License
+| Library | Value Name / Registry Reference |
+| :--- | :--- |
+| **Desktop** | `Desktop` |
+| **Downloads** | `{374DE290-123F-4565-9164-39C4925E467B}` |
+| **Documents** | `Personal` |
+| **Music** | `My Music` |
+| **Pictures** | `My Pictures` |
+| **Videos** | `My Video` |
 
-This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for full details.
+---
+
+## 🚀 How to Use
+
+1. Save the script with a `.bat` extension (e.g., `Windows-Backup.bat`).
+2. Place the file in the destination drive where you want your backup stored (e.g., on a USB drive or secondary storage partition).
+3. **Double-click** the script to execute it.
+4. Confirm the **UAC** prompt when asked for Administrator permissions.
+5. The script will back up all libraries into a newly created folder named **`Windows Backup`**.
+6. The terminal will display progress and exit automatically after 10 seconds.
+
+---
+
+## 💻 System Requirements
+
+- **OS:** Windows 7, Windows 8.1, Windows 10, or Windows 11.
+- **PowerShell:** Required for automatic UAC elevation.
+- **Permissions:** Administrator access (requested automatically).

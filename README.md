@@ -2,7 +2,7 @@
 
 ![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D6?logo=windows&logoColor=white)
 
-[English](README.md) | فارسی
+English | [فارسی](README.FA.md)
 
 </div>
 

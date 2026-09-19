@@ -127,12 +127,6 @@ Closing in  7 s ...  press any key to exit
 
 ---
 
-## 📄 License
-
-Distributed under the [Apache-2.0 License](LICENSE).
-
----
-
 ## ⚖️ Absolute Legal Disclaimer, Waiver & Limitation of Liability
 
 This project is licensed under the **Apache License, Version 2.0**. This disclaimer expressly supplements, expands, and reinforces **Section 7 (Disclaimer of Warranty)** and **Section 8 (Limitation of Liability)** of the Apache License 2.0, and shall control to the maximum extent permitted by applicable law.
